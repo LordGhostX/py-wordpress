@@ -51,7 +51,7 @@ class WP:
         return r.json()
 
     def get_taxonomies(self, taxonomy=None, params=None):
-        # get all taxonomy
+        # get all taxonomies
         if taxonomy:
             r = requests.get(
                 self.api_url + "taxonomies/{}".format(taxonomy), params=params)
@@ -59,16 +59,28 @@ class WP:
             r = requests.get(self.api_url + "taxonomies", params=params)
         return r.json()
 
+    def get_media(self, media_id=None, params=None):
+        # get all blog media
+        if media_id:
+            r = requests.get(
+                self.api_url + "media/{}".format(media_id), params=params)
+        else:
+            r = requests.get(self.api_url + "media", params=params)
+        return r.json()
 
-wp = WP("https://blog.cleanpick.green")
-# print(wp.get_posts())
-# print(wp.get_posts(1))
-# print(wp.get_categories())
-# print(wp.get_tags())
-# print(wp.get_pages())
-# print(wp.get_pages(1))
-# print(wp.get_comments())
-# print(wp.get_comments(1))
-# print(wp.post_comment())
-print(wp.get_taxonomies())
-print(wp.get_taxonomies(1))
+
+if __name__ == "__main__":
+    wp = WP("https://blog.cleanpick.green")
+    # print(wp.get_posts())
+    # print(wp.get_posts(1))
+    # print(wp.get_categories())
+    # print(wp.get_tags())
+    # print(wp.get_pages())
+    # print(wp.get_pages(1))
+    # print(wp.get_comments())
+    # print(wp.get_comments(1))
+    # print(wp.post_comment())
+    # print(wp.get_taxonomies())
+    # print(wp.get_taxonomies(1))
+    print(wp.get_media())
+    print(wp.get_media(1))
