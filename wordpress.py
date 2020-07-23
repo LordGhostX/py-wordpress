@@ -68,6 +68,15 @@ class WP:
             r = requests.get(self.api_url + "media", params=params)
         return r.json()
 
+    def get_users(self, user_id=None, params=None):
+        # get all blog media
+        if user_id:
+            r = requests.get(
+                self.api_url + "users/{}".format(user_id), params=params)
+        else:
+            r = requests.get(self.api_url + "users", params=params)
+        return r.json()
+
 
 if __name__ == "__main__":
     wp = WP("https://blog.cleanpick.green")
@@ -82,5 +91,7 @@ if __name__ == "__main__":
     # print(wp.post_comment())
     # print(wp.get_taxonomies())
     # print(wp.get_taxonomies(1))
-    print(wp.get_media())
-    print(wp.get_media(1))
+    # print(wp.get_media())
+    # print(wp.get_media(1))
+    print(wp.get_users())
+    print(wp.get_users(1))
