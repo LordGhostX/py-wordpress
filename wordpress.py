@@ -23,8 +23,15 @@ class WP:
             self.api_url + "categories", params=params)
         return r.json()
 
+    def get_tags(self, params=None):
+        # get blog tags
+        r = requests.get(
+            self.api_url + "tags", params=params)
+        return r.json()
+
 
 wp = WP("https://blog.cleanpick.green")
 # print(wp.get_posts())
 # print(wp.get_post(1))
-print(wp.get_categories())
+# print(wp.get_categories())
+print(wp.get_tags())
