@@ -30,7 +30,7 @@ class WP:
         return r.json()
 
     def get_pages(self, params=None):
-        # get all blog poage
+        # get all blog page
         r = requests.get(self.api_url + "pages", params=params)
         return r.json()
 
@@ -40,6 +40,15 @@ class WP:
             self.api_url + "pages/{}".format(page_id), params=params)
         return r.json()
 
+    def get_comments(self, post_id=None, params=None):
+        # get all comments
+        if post_id:
+            r = requests.get(
+                self.api_url + "comments/{}".format(post_id), params=params)
+        else:
+            r = requests.get(self.api_url + "comments", params=params)
+        return r.json()
+
 
 wp = WP("https://blog.cleanpick.green")
 # print(wp.get_posts())
@@ -47,4 +56,6 @@ wp = WP("https://blog.cleanpick.green")
 # print(wp.get_categories())
 # print(wp.get_tags())
 # print(wp.get_pages())
-print(wp.get_page(1))
+# print(wp.get_page(1))
+print(wp.get_comments())
+print(wp.get_comments(1))
