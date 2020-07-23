@@ -29,9 +29,22 @@ class WP:
             self.api_url + "tags", params=params)
         return r.json()
 
+    def get_pages(self, params=None):
+        # get all blog poage
+        r = requests.get(self.api_url + "pages", params=params)
+        return r.json()
+
+    def get_page(self, page_id, params=None):
+        # get a particular blog page
+        r = requests.get(
+            self.api_url + "pages/{}".format(page_id), params=params)
+        return r.json()
+
 
 wp = WP("https://blog.cleanpick.green")
 # print(wp.get_posts())
 # print(wp.get_post(1))
 # print(wp.get_categories())
-print(wp.get_tags())
+# print(wp.get_tags())
+# print(wp.get_pages())
+print(wp.get_page(1))
