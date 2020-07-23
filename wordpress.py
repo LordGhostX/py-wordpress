@@ -11,6 +11,13 @@ class WP:
         r = requests.get(self.api_url + "posts", params=params)
         return r.json()
 
+    def get_post(self, post_id, params=None):
+        # get all blog posts
+        r = requests.get(
+            self.api_url + "posts/{}".format(post_id), params=params)
+        return r.json()
+
 
 wp = WP("https://blog.cleanpick.green")
-print(wp.get_posts())
+# print(wp.get_posts())
+print(wp.get_post(1))
