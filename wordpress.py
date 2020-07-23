@@ -85,23 +85,3 @@ class WP:
             params["search"] = search_item
         r = requests.get(self.api_url + "users", data=params)
         return r.json()
-
-
-if __name__ == "__main__":
-    wp = WP("https://blog.cleanpick.green")
-    # print(wp.get_posts())
-    # print(wp.get_posts(1))
-    # print(wp.get_categories())
-    # print(wp.get_tags())
-    # print(wp.get_pages())
-    # print(wp.get_pages(1))
-    # print(wp.get_comments())
-    # print(wp.get_comments(1))
-    # print(wp.post_comment())
-    # print(wp.get_taxonomies())
-    # print(wp.get_taxonomies(1))
-    # print(wp.get_media())
-    # print(wp.get_media(1))
-    # print(wp.get_users())
-    # print(wp.get_users(1))
-    print(wp.search("hello"))
