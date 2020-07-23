@@ -6,15 +6,13 @@ class WP:
         self.blog_url = blog_url
         self.api_url = blog_url + api_base
 
-    def get_posts(self, params=None):
+    def get_posts(self, post_id=None, params=None):
         # get all blog posts
-        r = requests.get(self.api_url + "posts", params=params)
-        return r.json()
-
-    def get_post(self, post_id, params=None):
-        # get a particular blog post
-        r = requests.get(
-            self.api_url + "posts/{}".format(post_id), params=params)
+        if post_id:
+            r = requests.get(
+                self.api_url + "posts/{}".format(post_id), params=params)
+        else:
+            r = requests.get(self.api_url + "posts", params=params)
         return r.json()
 
     def get_categories(self, params=None):
@@ -29,15 +27,13 @@ class WP:
             self.api_url + "tags", params=params)
         return r.json()
 
-    def get_pages(self, params=None):
-        # get all blog page
-        r = requests.get(self.api_url + "pages", params=params)
-        return r.json()
-
-    def get_page(self, page_id, params=None):
-        # get a particular blog page
-        r = requests.get(
-            self.api_url + "pages/{}".format(page_id), params=params)
+    def get_pages(self, page_id=None, params=None):
+        # get blog pages
+        if page_id:
+            r = requests.get(
+                self.api_url + "pages/{}".format(page_id), params=params)
+        else:
+            r = requests.get(self.api_url + "pages", params=params)
         return r.json()
 
     def get_comments(self, post_id=None, params=None):
@@ -49,13 +45,19 @@ class WP:
             r = requests.get(self.api_url + "comments", params=params)
         return r.json()
 
+    def post_comment(self, params=None):
+        # post a comment to the blog
+        r = requests.post(self.api_url + "comments", params=params)
+        return r.json()
+
 
 wp = WP("https://blog.cleanpick.green")
 # print(wp.get_posts())
-# print(wp.get_post(1))
+# print(wp.get_posts(1))
 # print(wp.get_categories())
 # print(wp.get_tags())
 # print(wp.get_pages())
-# print(wp.get_page(1))
-print(wp.get_comments())
-print(wp.get_comments(1))
+# print(wp.get_pages(1))
+# print(wp.get_comments())
+# print(wp.get_comments(1))
+# print(wp.post_comment())
