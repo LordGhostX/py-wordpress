@@ -50,6 +50,15 @@ class WP:
         r = requests.post(self.api_url + "comments", params=params)
         return r.json()
 
+    def get_taxonomies(self, taxonomy=None, params=None):
+        # get all taxonomy
+        if taxonomy:
+            r = requests.get(
+                self.api_url + "taxonomies/{}".format(taxonomy), params=params)
+        else:
+            r = requests.get(self.api_url + "taxonomies", params=params)
+        return r.json()
+
 
 wp = WP("https://blog.cleanpick.green")
 # print(wp.get_posts())
@@ -61,3 +70,5 @@ wp = WP("https://blog.cleanpick.green")
 # print(wp.get_comments())
 # print(wp.get_comments(1))
 # print(wp.post_comment())
+print(wp.get_taxonomies())
+print(wp.get_taxonomies(1))
